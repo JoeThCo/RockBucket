@@ -1,4 +1,4 @@
-Total Time: 0
+Total Time: 1.5
 
 TODO
 MVP
