@@ -8,9 +8,11 @@ public class InBucket : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Rock rock = other.gameObject.GetComponent<Rock>();
-        if (rock != null) 
+        if (rock != null)
         {
             celebrateParticles.Play();
+            rock.OnBucketEnter();
+            rock.DeleteRock();
             Debug.Log("Rock Entered!");
         }
     }

@@ -1,20 +1,4 @@
-Total Time: 1.5
+Total Time: 2.5
 
 TODO
-MVP
-
-Player
-WASD move
-MOUSE look
-LEFT CLICK Throw Rock
-SPACE jump
-LSHIFT sprint
-LCTRL crouch
-
-Rock
-Model
-Detect when Rock misses
-
-Bucket
-Model
-Detect when rock enters
+Not sure lmao

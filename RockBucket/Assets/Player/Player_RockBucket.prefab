@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1075627850073828333, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2603706447776917453, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 74ed9a0d0ce46514fbb3a2c6023eb936, type: 2}
+    - target: {fileID: 5133526487375609444, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56,6 +64,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_RockBucket
       objectReference: {fileID: 0}
+    - target: {fileID: 7156374843703045680, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8018530099014279358, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270343061717139989, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64,6 +88,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4625234197236396519}
   m_SourcePrefab: {fileID: 100100000, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+--- !u!4 &829535192521044612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5175873095592831342, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+  m_PrefabInstance: {fileID: 5501002859948874730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1491419198037951268 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6405782434317146318, guid: 9f1ccad603632944788deb78248631ae, type: 3}
@@ -81,10 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a630cd7fde11a444cbd085a483c13fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Eyes: {fileID: 2984130909396120507}
+  Eyes: {fileID: 829535192521044612}
   rockPrefab: {fileID: 5550869393909777782, guid: 4363d366b2c46654b9105a9d92454c79, type: 3}
---- !u!4 &2984130909396120507 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}
-  m_PrefabInstance: {fileID: 5501002859948874730}
-  m_PrefabAsset: {fileID: 0}
