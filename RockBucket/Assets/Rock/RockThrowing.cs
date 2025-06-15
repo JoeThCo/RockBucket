@@ -6,9 +6,12 @@ public class RockThrowing : MonoBehaviour
 {
     public bool CanThrowRock { get; private set; } = true;
 
+    [SerializeField] private Transform Camera;
     [SerializeField] private Transform Eyes;
+    [Space(10)]
     [SerializeField] private Rigidbody rb;
     [Space(10)]
+    [SerializeField][Range(10, 100)] private int ThrowPower = 50;
     [SerializeField] private Rock rockPrefab;
 
     public delegate void OnRockThrown();
@@ -33,7 +36,7 @@ public class RockThrowing : MonoBehaviour
     private void rockThrown()
     {
         Rock newRock = Instantiate(rockPrefab, Eyes.position, Quaternion.Euler(Eyes.forward), null);
-        newRock.Throw(Eyes.forward, rb.velocity.magnitude + 20);
+        newRock.Throw(Camera.forward, Mathf.Sqrt(rb.velocity.magnitude) + ThrowPower);
         newRock.RockDelete += OnRockDelete;
         CanThrowRock = false;
     }

@@ -10,10 +10,12 @@ public class Rock : MonoBehaviour
     [Space(10)]
     [SerializeField] private Rigidbody rb;
     [Space(10)]
+    private float deleteTime = 0;
+    [SerializeField][Range(1f, 5f)] private float RockOnGroundDeleteTime = 2.5f;
     [SerializeField][Range(.5f, 5f)] private float rockDeleteSpeed = 1.75f;
+    [Space(10)]
     [SerializeField] private ParticleSystem destroyParticles;
 
-    private bool hasWaitedFrame = false;
     private bool isInBucket = false;
 
     public delegate void OnDeleteRock(Rock rock);
@@ -22,6 +24,7 @@ public class Rock : MonoBehaviour
     private void Awake()
     {
         meshFilter.mesh = rockMeshes[(int)UnityEngine.Random.value % rockMeshes.Length];
+        transform.rotation = UnityEngine.Random.rotation;
         RockDelete += DeleteRock;
     }
 
@@ -32,7 +35,7 @@ public class Rock : MonoBehaviour
 
     public void Throw(Vector3 direction, float force)
     {
-        rb.AddForce(direction * force, ForceMode.VelocityChange);
+        rb.AddForce(direction.normalized * force, ForceMode.VelocityChange);
     }
 
     public void DeleteRock()
@@ -58,15 +61,13 @@ public class Rock : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void FixedUpdate()
+    private void OnCollisionStay(Collision collision)
     {
-        if (!hasWaitedFrame)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && rb.velocity.magnitude <= rockDeleteSpeed)
         {
-            hasWaitedFrame = true;
-            return;
+            deleteTime += Time.deltaTime;
+            if (deleteTime >= RockOnGroundDeleteTime)
+                RockDelete?.Invoke(this);
         }
-
-        if (rb.velocity.magnitude <= rockDeleteSpeed)
-            RockDelete?.Invoke(this);
     }
 }
