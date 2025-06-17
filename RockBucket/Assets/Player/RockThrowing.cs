@@ -65,6 +65,7 @@ public class RockThrowing : MonoBehaviour
 
     private void throwEnd()
     {
+        SoundEffectController.Play("Throw", Camera.position);
         throwRock();
         power = 0;
     }

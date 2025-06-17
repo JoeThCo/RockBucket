@@ -21,6 +21,7 @@ public class InBucket : MonoBehaviour
 
     private void rockInBucket(Rock rock)
     {
+        SoundEffectController.Play("InBucket", transform.position);
         celebrateParticles.Play();
         rock.OnBucketEnter();
         rock.DeleteRock();
