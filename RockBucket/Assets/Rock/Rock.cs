@@ -33,6 +33,14 @@ public class Rock : MonoBehaviour
         RockDelete -= DeleteRock;
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1)) 
+        {
+            RockDelete?.Invoke(this);
+        }
+    }
+
     public void Throw(Vector3 direction, float force)
     {
         rb.AddForce(direction.normalized * force, ForceMode.VelocityChange);
@@ -59,6 +67,11 @@ public class Rock : MonoBehaviour
 
         RockDelete -= DeleteRock;
         Destroy(gameObject);
+    }
+
+    public void ApplyWind(Vector3 direction, float power) 
+    {
+        rb.AddForce(direction.normalized * power, ForceMode.Acceleration);
     }
 
     private void OnCollisionStay(Collision collision)

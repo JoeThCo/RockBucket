@@ -104,7 +104,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.22
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &-1570245797373491858
 TrailRenderer:
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 7178087119200536391}
   - component: {fileID: 5221499248090703535}
   m_Layer: 6
-  m_Name: Sphere
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
