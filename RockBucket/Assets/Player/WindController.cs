@@ -42,7 +42,6 @@ public class WindController : MonoBehaviour
     {
         transform.localRotation = Quaternion.Euler(0, Random.value * 360, 0);
         windStrength = Random.value * maxWindStrength;
-        Debug.Log("wind changed");
     }
 
     private void OnTriggerStay(Collider other)
