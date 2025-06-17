@@ -18,8 +18,8 @@ public class Rock : MonoBehaviour
 
     private bool isInBucket = false;
 
-    public delegate void OnDeleteRock(Rock rock);
-    public OnDeleteRock RockDelete;
+    public delegate void RockEvent(Rock rock);
+    public RockEvent RockDelete;
 
     private void Awake()
     {
