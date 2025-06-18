@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindController : MonoBehaviour
+public class WindDirection : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem windParticles;
     [SerializeField] private float maxWindStrength = 25;
     private float windStrength;
 
@@ -13,11 +14,17 @@ public class WindController : MonoBehaviour
 
     public delegate void WindEvent();
     public WindEvent WindChanged;
+    public WindEvent WindChangedUI;
+
+    public Vector3 Direction { get { return windParticles.transform.forward; } }
+    public float WindSpeed01 { get { return windStrength / maxWindStrength; } }
+    private float WindSpeed { get { return windStrength * 2f; } }
+    public string WindSpeedString { get { return $"{WindSpeed.ToString("F0")} mph"; } }
 
     private void Start()
     {
-        windChanged();
         WindChanged += windChanged;
+        windChanged();
     }
 
     private void OnDisable()
@@ -42,6 +49,14 @@ public class WindController : MonoBehaviour
     {
         transform.localRotation = Quaternion.Euler(0, Random.value * 360, 0);
         windStrength = Random.value * maxWindStrength;
+
+        ParticleSystem.EmissionModule emissionModule = windParticles.emission;
+        emissionModule.rateOverTime = (WindSpeed01 * 5) + 1;
+
+        ParticleSystem.MainModule mainModule = windParticles.main;
+        mainModule.startSpeed = WindSpeed01 * 1.5f;
+
+        WindChangedUI?.Invoke();
     }
 
     private void OnTriggerStay(Collider other)

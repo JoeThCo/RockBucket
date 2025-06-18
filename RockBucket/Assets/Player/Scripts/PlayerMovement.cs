@@ -17,26 +17,26 @@ public class PlayerMovement : MonoBehaviour
     private float sensitivity = 50f;
     private float sensMultiplier = 1f;
 
-    //Movement
+    [Header("Movement")]
     [SerializeField] private float moveSpeed = 4500;
     [SerializeField] private float maxSpeed = 20;
-    [SerializeField] private bool grounded;
-    [SerializeField] private LayerMask whatIsGround;
 
     [SerializeField] private float counterMovement = 0.175f;
     private float threshold = 0.01f;
     [SerializeField] private float maxSlopeAngle = 35f;
 
-    //Crouch & Slide
-    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-    private Vector3 playerScale;
+    [Header("Crouch + Slide")]
     [SerializeField] private float slideForce = 400;
     [SerializeField] private float slideCounterMovement = 0.2f;
+    private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
+    private Vector3 playerScale;
 
-    //Jumping
+    [Header("Jumping")]
+    [SerializeField] private float jumpForce = 550f;
+    [SerializeField] private bool grounded;
+    [SerializeField] private LayerMask whatIsGround;
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
-    [SerializeField] private float jumpForce = 550f;
 
     //Input
     private float x, y;
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 10);
+        rb.AddForce(Vector3.down * Time.deltaTime * 10, ForceMode.VelocityChange);
 
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -148,8 +148,8 @@ public class PlayerMovement : MonoBehaviour
         if (grounded && crouching) multiplierV = 0f;
 
         //Apply forces to move player
-        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
-        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+        rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV, ForceMode.VelocityChange);
+        rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier, ForceMode.VelocityChange);
     }
 
     private void Jump()
