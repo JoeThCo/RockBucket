@@ -21,9 +21,13 @@ public class WindDirection : MonoBehaviour
     private float WindSpeed { get { return windStrength * 2f; } }
     public string WindSpeedString { get { return $"{WindSpeed.ToString("F0")} mph"; } }
 
-    private void Start()
+    private void Awake()
     {
         WindChanged += windChanged;
+    }
+
+    private void Start()
+    {
         windChanged();
     }
 
@@ -40,7 +44,9 @@ public class WindDirection : MonoBehaviour
         }
         else
         {
-            WindChanged?.Invoke();
+            if (WindChanged != null)
+                WindChanged?.Invoke();
+
             time = 0;
         }
     }
@@ -56,7 +62,8 @@ public class WindDirection : MonoBehaviour
         ParticleSystem.MainModule mainModule = windParticles.main;
         mainModule.startSpeed = WindSpeed01 * 1.5f;
 
-        WindChangedUI?.Invoke();
+        if (WindChangedUI != null)
+            WindChangedUI?.Invoke();
     }
 
     private void OnTriggerStay(Collider other)

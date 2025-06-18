@@ -13,14 +13,14 @@ public class WindDirectionUI : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private WindDirection windDireciton;
 
-    private void Start()
+    private void Awake()
     {
         windDireciton.WindChangedUI += windChangedUI;
     }
 
     private void OnDisable()
     {
-        windDireciton.WindChanged -= windChangedUI;
+        windDireciton.WindChangedUI -= windChangedUI;
     }
 
     private void FixedUpdate()
