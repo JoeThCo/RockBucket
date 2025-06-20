@@ -546,6 +546,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bucket
       objectReference: {fileID: 0}
+    - target: {fileID: 6492222041407065122, guid: f861289a788c9ac46b741555f7f9fffb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906677966606506632, guid: f861289a788c9ac46b741555f7f9fffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -850,6 +858,10 @@ PrefabInstance:
     - target: {fileID: 1260947082793388777, guid: 4363d366b2c46654b9105a9d92454c79, type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5550869393909777782, guid: 4363d366b2c46654b9105a9d92454c79, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
