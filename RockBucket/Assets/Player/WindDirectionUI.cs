@@ -15,12 +15,12 @@ public class WindDirectionUI : MonoBehaviour
 
     private void Awake()
     {
-        windDireciton.WindChangedUI += windChangedUI;
+        windDireciton.WindChangedUI += WindDireciton_WindChangedUI;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        windDireciton.WindChangedUI -= windChangedUI;
+        windDireciton.WindChangedUI -= WindDireciton_WindChangedUI;
     }
 
     private void FixedUpdate()
@@ -32,7 +32,7 @@ public class WindDirectionUI : MonoBehaviour
         arrowUI.rectTransform.rotation = Quaternion.Euler(0, 0, -angleDifference + 90);
     }
 
-    private void windChangedUI()
+    private void WindDireciton_WindChangedUI()
     {
         arrowUI.color = powerGradient.Evaluate(windDireciton.WindSpeed01);
         windSpeedText.SetText(windDireciton.WindSpeedString);

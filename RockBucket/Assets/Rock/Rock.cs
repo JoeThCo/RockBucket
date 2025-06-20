@@ -19,18 +19,18 @@ public class Rock : MonoBehaviour
     private bool isInBucket = false;
 
     public delegate void RockEvent(Rock rock);
-    public RockEvent RockDelete;
+    public event RockEvent RockDelete;
 
     private void Awake()
     {
         meshFilter.mesh = rockMeshes[(int)UnityEngine.Random.value % rockMeshes.Length];
         transform.rotation = UnityEngine.Random.rotation;
-        RockDelete += DeleteRock;
+        RockDelete += Rock_RockDelete;
     }
 
     private void OnDestroy()
     {
-        RockDelete -= DeleteRock;
+        RockDelete += Rock_RockDelete;
     }
 
     private void Update()
@@ -56,7 +56,7 @@ public class Rock : MonoBehaviour
         isInBucket = true;
     }
 
-    private void DeleteRock(Rock rock)
+    private void Rock_RockDelete(Rock rock)
     {
         if (!isInBucket)
         {
@@ -65,7 +65,7 @@ public class Rock : MonoBehaviour
             destroyParticles.Play();
         }
 
-        RockDelete -= DeleteRock;
+        RockDelete -= Rock_RockDelete;
         Destroy(gameObject);
     }
 

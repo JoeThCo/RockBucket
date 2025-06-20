@@ -7,19 +7,19 @@ public class InBucket : MonoBehaviour
     [SerializeField] private ParticleSystem celebrateParticles;
 
     public delegate void BucketEvent(Rock rock);
-    public BucketEvent RockInBucket;
+    public event BucketEvent RockInBucket;
 
     private void Start()
     {
-        RockInBucket += rockInBucket;
+        RockInBucket += InBucket_RockInBucket;
     }
 
     private void OnDisable()
     {
-        RockInBucket -= rockInBucket;
+        RockInBucket -= InBucket_RockInBucket;
     }
 
-    private void rockInBucket(Rock rock)
+    private void InBucket_RockInBucket(Rock rock)
     {
         SoundEffectController.Play("InBucket", transform.position);
         celebrateParticles.Play();

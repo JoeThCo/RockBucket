@@ -13,8 +13,8 @@ public class WindDirection : MonoBehaviour
     private float time = 0;
 
     public delegate void WindEvent();
-    public WindEvent WindChanged;
-    public WindEvent WindChangedUI;
+    public event WindEvent WindChanged;
+    public event WindEvent WindChangedUI;
 
     public Vector3 Direction { get { return windParticles.transform.forward; } }
     public float WindSpeed01 { get { return windStrength / maxWindStrength; } }
@@ -23,17 +23,17 @@ public class WindDirection : MonoBehaviour
 
     private void Awake()
     {
-        WindChanged += windChanged;
+        WindChanged += WindDirection_WindChanged;
     }
 
     private void Start()
     {
-        windChanged();
+        WindDirection_WindChanged();
     }
 
     private void OnDisable()
     {
-        WindChanged -= windChanged;
+        WindChanged -= WindDirection_WindChanged;
     }
 
     private void FixedUpdate()
@@ -51,7 +51,7 @@ public class WindDirection : MonoBehaviour
         }
     }
 
-    private void windChanged()
+    private void WindDirection_WindChanged()
     {
         transform.localRotation = Quaternion.Euler(0, Random.value * 360, 0);
         windStrength = Random.value * maxWindStrength;

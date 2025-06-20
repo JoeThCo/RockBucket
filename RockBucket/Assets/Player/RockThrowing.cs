@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RockThrowing : MonoBehaviour
 {
@@ -13,61 +14,67 @@ public class RockThrowing : MonoBehaviour
     [SerializeField][Range(10, 100)] private int MaxThrow = 50;
     [SerializeField] private Rock rockPrefab;
     [Space(10)]
+    [SerializeField][Range(0f, 0.5f)] private float pitchOffset;
+    [SerializeField] private AudioSource rockPowerAudioSource;
     [SerializeField] private PowerBarUI powerBarUI;
+
+    public float Power { get { return power; } }
     private float power = 0;
     private float throwStartTime = 0;
 
     public delegate void ThrowEvent();
-    public delegate void PoweredThrowEvent(float t);
 
-    public ThrowEvent ThrowStart;
-    public PoweredThrowEvent ThrowMiddle;
-    public ThrowEvent ThrowEnd;
+    public event ThrowEvent ThrowStart;
+    public event ThrowEvent ThrowMiddle;
+    public event ThrowEvent ThrowEnd;
 
     private void Awake()
     {
-        ThrowStart += throwStart;
-        ThrowMiddle += throwMiddle;
-        ThrowEnd += throwEnd;
+        ThrowStart += RockThrowing_ThrowStart;
+        ThrowMiddle += RockThrowing_ThrowMiddle;
+        ThrowEnd += RockThrowing_ThrowEnd;
     }
 
     private void OnDisable()
     {
-        ThrowStart -= throwStart;
-        ThrowMiddle -= throwMiddle;
-        ThrowEnd -= throwEnd;
+        ThrowStart -= RockThrowing_ThrowStart;
+        ThrowMiddle -= RockThrowing_ThrowMiddle;
+        ThrowEnd -= RockThrowing_ThrowEnd;
     }
 
     private void Update()
     {
-        if (!CanThrowRock) return;
+        if (EventSystem.current.IsPointerOverGameObject() || GameManager.IsPaused || !CanThrowRock) return;
 
         if (Input.GetMouseButtonDown(0))
             ThrowStart?.Invoke();
 
         if (Input.GetMouseButton(0))
-            ThrowMiddle?.Invoke(power);
+            ThrowMiddle?.Invoke();
 
         if (Input.GetMouseButtonUp(0))
             ThrowEnd.Invoke();
     }
 
-    private void throwStart()
+    private void RockThrowing_ThrowStart()
     {
         throwStartTime = Time.time;
         power = 0;
+        rockPowerAudioSource.Play();
     }
 
-    private void throwMiddle(float _)
+    private void RockThrowing_ThrowMiddle()
     {
         power = Mathf.PingPong(Time.time - throwStartTime, 1);
+        rockPowerAudioSource.pitch = power;
     }
 
-    private void throwEnd()
+    private void RockThrowing_ThrowEnd()
     {
         SoundEffectController.Play("Throw", Camera.position);
         throwRock();
         power = 0;
+        rockPowerAudioSource.Stop();
     }
 
     private void throwRock()

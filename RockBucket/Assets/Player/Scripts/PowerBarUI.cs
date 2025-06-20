@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PowerBarUI : MonoBehaviour
 {
@@ -12,31 +13,31 @@ public class PowerBarUI : MonoBehaviour
 
     private void Start()
     {
-        rockThrowing.ThrowStart += throwStart;
-        rockThrowing.ThrowMiddle += throwMiddle;
-        rockThrowing.ThrowEnd += throwEnd;
+        rockThrowing.ThrowStart += RockThrowing_ThrowStart;
+        rockThrowing.ThrowMiddle += RockThrowing_ThrowMiddle;
+        rockThrowing.ThrowEnd += RockThrowing_ThrowEnd;
 
-        throwEnd();
+        RockThrowing_ThrowEnd();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        rockThrowing.ThrowStart -= throwStart;
-        rockThrowing.ThrowMiddle -= throwMiddle;
-        rockThrowing.ThrowEnd -= throwEnd;
+        rockThrowing.ThrowStart -= RockThrowing_ThrowStart;
+        rockThrowing.ThrowMiddle -= RockThrowing_ThrowMiddle;
+        rockThrowing.ThrowEnd -= RockThrowing_ThrowEnd;
     }
 
-    private void throwStart()
+    private void RockThrowing_ThrowStart()
     {
         artParent.gameObject.SetActive(true);
     }
 
-    private void throwMiddle(float power)
+    private void RockThrowing_ThrowMiddle()
     {
-        SetPower(power);
+        SetPower(rockThrowing.Power);
     }
 
-    private void throwEnd()
+    private void RockThrowing_ThrowEnd()
     {
         artParent.gameObject.SetActive(false);
     }

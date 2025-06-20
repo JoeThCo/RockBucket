@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: grounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: moveSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: slideForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: maxSlopeAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: counterMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1075627850073828333, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalScale.y
       value: 3
@@ -50,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -83,18 +103,6 @@ PrefabInstance:
     - target: {fileID: 6405782434317146318, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_Name
       value: Player_RockBucket
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156374843703045680, guid: 9f1ccad603632944788deb78248631ae, type: 3}
-      propertyPath: field of view
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156374843703045680, guid: 9f1ccad603632944788deb78248631ae, type: 3}
-      propertyPath: near clip plane
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7156374843703045680, guid: 9f1ccad603632944788deb78248631ae, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -144,10 +152,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 829535192521044612}
-  Eyes: {fileID: 2984130909396120507}
   rb: {fileID: 5135529309285724520}
-  ThrowPower: 50
+  MaxThrow: 100
   rockPrefab: {fileID: 5550869393909777782, guid: 4363d366b2c46654b9105a9d92454c79, type: 3}
+  powerBarUI: {fileID: 0}
 --- !u!4 &2984130909396120507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}

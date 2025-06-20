@@ -60,11 +60,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.IsPaused) return;
         Movement();
     }
 
     private void Update()
     {
+        if (GameManager.IsPaused) return;
         MyInput();
         Look();
     }
