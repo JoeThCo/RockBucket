@@ -16,6 +16,8 @@ public class Rock : MonoBehaviour
     [Space(10)]
     [SerializeField] private ParticleSystem destroyParticles;
 
+    private bool usedBackboard = false;
+    private int bounces = 0;
     private bool isInBucket = false;
 
     public delegate void RockEvent(Rock rock);
@@ -64,6 +66,13 @@ public class Rock : MonoBehaviour
             destroyParticles.transform.position = transform.position;
             destroyParticles.Play();
         }
+        else 
+        {
+            if (bounces == 0) 
+                ComboController.Add("Swish");
+            else if(bounces == 1)
+                ComboController.Add("Dauf Bouncer");
+        }
 
         RockDelete -= Rock_RockDelete;
         Destroy(gameObject);
@@ -82,5 +91,39 @@ public class Rock : MonoBehaviour
             if (deleteTime >= RockOnGroundDeleteTime)
                 RockDelete?.Invoke(this);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (rb.velocity.magnitude <= rockDeleteSpeed) return;
+
+        if (!usedBackboard && collision.gameObject.CompareTag("Backboard"))
+        {
+            ComboController.Add("Backboard");
+            usedBackboard = true;
+        }
+
+        if (collision.gameObject.CompareTag("Bucket"))
+        {
+            ComboController.Add("Bucket");
+        }
+
+        if (collision.gameObject.name == "InvisibleWall")
+        {
+            ComboController.Add("Wall Hacks");
+        }
+
+        if (collision.gameObject.name == "Roof")
+        {
+            ComboController.Add("Roof");
+        }
+
+        if (collision.gameObject.CompareTag("Tree")) 
+        {
+            ComboController.Add("Tree");
+        }
+
+        ComboController.Add("Bounce");
+        bounces++;
     }
 }

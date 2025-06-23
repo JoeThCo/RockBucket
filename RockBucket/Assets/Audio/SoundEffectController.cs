@@ -13,7 +13,7 @@ public static class SoundEffectController
         soundEffectPrefab = Resources.Load<SoundEffect>("Audio/SFX/SFX");
     }
 
-    public static AudioScriptableObject Get(string name)
+    private static AudioScriptableObject Get(string name)
     {
         foreach (AudioScriptableObject obj in allSFX)
         {

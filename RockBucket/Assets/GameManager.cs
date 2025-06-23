@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SoundEffectController.Load();
+        ComboController.Load();
 
         GamePaused += GameManager_GamePaused;
         GameResume += GameManager_GameResume;

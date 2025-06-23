@@ -61,6 +61,7 @@ public class RockThrowing : MonoBehaviour
         throwStartTime = Time.time;
         power = 0;
         rockPowerAudioSource.Play();
+        ComboController.Clear();
     }
 
     private void RockThrowing_ThrowMiddle()
