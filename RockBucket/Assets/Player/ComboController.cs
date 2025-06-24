@@ -9,7 +9,7 @@ public static class ComboController
 
     static Dictionary<ComboScriptableObject, int> ComboDictionary = new Dictionary<ComboScriptableObject, int>();
 
-    public delegate void ComboUpdated(string combo);
+    public delegate void ComboUpdated(string combo, int points);
     public static event ComboUpdated OnComboUpdated;
 
     public static void Load()
@@ -38,13 +38,27 @@ public static class ComboController
         else
             ComboDictionary[obj] = 1;
 
-        OnComboUpdated?.Invoke(GetComboString());
+        OnComboUpdated?.Invoke(GetComboString(), GetComboPoints());
+        SoundEffectController.Play("ComboAdded");
     }
 
     public static void Clear()
     {
         ComboDictionary = new Dictionary<ComboScriptableObject, int>();
-        OnComboUpdated.Invoke(string.Empty);
+        OnComboUpdated.Invoke(string.Empty, 0);
+    }
+
+    private static int GetComboPoints() 
+    {
+        int total = 0;
+        foreach (KeyValuePair<ComboScriptableObject, int> obj in ComboDictionary) 
+        {
+            Debug.Log(obj.Key.Score);
+            Debug.Log(obj.Value);
+            total += obj.Key.Score * obj.Value;
+        }
+
+        return total;
     }
 
     private static string GetComboString()

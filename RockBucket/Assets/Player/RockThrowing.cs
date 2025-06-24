@@ -8,10 +8,8 @@ public class RockThrowing : MonoBehaviour
     public bool CanThrowRock { get; private set; } = true;
 
     [SerializeField] private Transform Camera;
-    [Space(10)]
     [SerializeField] private Rigidbody rb;
     [Space(10)]
-    [SerializeField][Range(10, 100)] private int MaxThrow = 50;
     [SerializeField] private Rock rockPrefab;
     [Space(10)]
     [SerializeField][Range(0f, 0.5f)] private float pitchOffset;
@@ -81,7 +79,7 @@ public class RockThrowing : MonoBehaviour
     private void throwRock()
     {
         Rock newRock = Instantiate(rockPrefab, Camera.position, Quaternion.Euler(Camera.forward), null);
-        newRock.Throw(Camera.forward, Mathf.Sqrt(rb.velocity.magnitude) + (MaxThrow * power));
+        newRock.Throw(Camera.forward, Mathf.Sqrt(rb.velocity.magnitude) + (GameManager.Instance.GameRules.MaxThrowPower * power));
         newRock.RockDelete += OnRockDelete;
         CanThrowRock = false;
     }

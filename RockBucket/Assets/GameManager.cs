@@ -12,8 +12,14 @@ public class GameManager : MonoBehaviour
 
     public static bool IsPaused { get; private set; }
 
+    public GameRules GameRules;
+
+    public static GameManager Instance;
     private void Awake()
     {
+        if (Instance == null)
+            Instance = this;
+
         SoundEffectController.Load();
         ComboController.Load();
 

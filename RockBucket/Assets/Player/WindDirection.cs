@@ -5,21 +5,23 @@ using UnityEngine;
 public class WindDirection : MonoBehaviour
 {
     [SerializeField] private ParticleSystem windParticles;
-    [SerializeField] private float maxWindStrength = 25;
-    private float windStrength;
 
-    [Space(10)]
-    [SerializeField] float changeWindTime = 5;
+    private float windStrength;
     private float time = 0;
+
+    private bool isNoWind = false;
+    private bool playSFX = false;
 
     public delegate void WindEvent();
     public event WindEvent WindChanged;
     public event WindEvent WindChangedUI;
 
     public Vector3 Direction { get { return windParticles.transform.forward; } }
-    public float WindSpeed01 { get { return windStrength / maxWindStrength; } }
+    public float WindSpeed01 { get { return windStrength / GameManager.Instance.GameRules.MaxWindStrength; } }
     private float WindSpeed { get { return windStrength * 2f; } }
     public string WindSpeedString { get { return $"{WindSpeed.ToString("F0")} mph"; } }
+
+    private const float NO_WIND = 0.01f;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class WindDirection : MonoBehaviour
     private void Start()
     {
         WindDirection_WindChanged();
+        playSFX = true;
     }
 
     private void OnDisable()
@@ -38,7 +41,7 @@ public class WindDirection : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (time < changeWindTime)
+        if (time < GameManager.Instance.GameRules.WindChangeTime)
         {
             time += Time.deltaTime;
         }
@@ -53,14 +56,20 @@ public class WindDirection : MonoBehaviour
 
     private void WindDirection_WindChanged()
     {
+        windStrength = isNoWind ? NO_WIND : Random.value * GameManager.Instance.GameRules.MaxWindStrength;
+
         transform.localRotation = Quaternion.Euler(0, Random.value * 360, 0);
-        windStrength = Random.value * maxWindStrength;
 
         ParticleSystem.EmissionModule emissionModule = windParticles.emission;
         emissionModule.rateOverTime = (WindSpeed01 * 5) + 1;
 
         ParticleSystem.MainModule mainModule = windParticles.main;
         mainModule.startSpeed = WindSpeed01 * 1.5f;
+
+        isNoWind = !isNoWind;
+
+        if (playSFX)
+            SoundEffectController.Play("WindChanged");
 
         if (WindChangedUI != null)
             WindChangedUI?.Invoke();

@@ -14,8 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Rotation and look
     private float xRotation;
-    private float sensitivity = 50f;
-    private float sensMultiplier = 1f;
+    [SerializeField][Range(1f, 100f)] private float sensitivity = 25f;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 4500;
@@ -183,8 +182,8 @@ public class PlayerMovement : MonoBehaviour
     private float desiredX;
     private void Look()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime;
 
         //Find current look rotation
         Vector3 rot = playerCam.transform.localRotation.eulerAngles;
