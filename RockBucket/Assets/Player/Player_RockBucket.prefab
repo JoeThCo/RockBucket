@@ -1,5 +1,133 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7767559090039781484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3886131934989301238}
+  - component: {fileID: 857793425698658715}
+  m_Layer: 7
+  m_Name: RockPowerAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3886131934989301238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767559090039781484}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1503270438956975499}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &857793425698658715
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767559090039781484}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: db63c33d927461e418ddb24c0662c7c7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &5501002859948874730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,6 +147,10 @@ PrefabInstance:
     - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: slideForce
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: sensitivity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 924734196714913143, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: maxSlopeAngle
@@ -104,6 +236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_RockBucket
       objectReference: {fileID: 0}
+    - target: {fileID: 6405782434317146318, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -123,7 +259,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2002351033420202859, guid: 9f1ccad603632944788deb78248631ae, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3886131934989301238}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6405782434317146318, guid: 9f1ccad603632944788deb78248631ae, type: 3}
       insertIndex: -1
@@ -153,9 +292,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 829535192521044612}
   rb: {fileID: 5135529309285724520}
-  MaxThrow: 100
   rockPrefab: {fileID: 5550869393909777782, guid: 4363d366b2c46654b9105a9d92454c79, type: 3}
+  pitchOffset: 0.5
+  rockPowerAudioSource: {fileID: 857793425698658715}
   powerBarUI: {fileID: 0}
+--- !u!4 &1503270438956975499 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6380418196566531681, guid: 9f1ccad603632944788deb78248631ae, type: 3}
+  m_PrefabInstance: {fileID: 5501002859948874730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2984130909396120507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7295479230471120977, guid: 9f1ccad603632944788deb78248631ae, type: 3}
