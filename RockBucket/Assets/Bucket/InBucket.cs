@@ -9,8 +9,6 @@ public class InBucket : MonoBehaviour
     public delegate void BucketEvent(Rock rock);
     public event BucketEvent RockInBucket;
 
-    public static bool IsRockInBucket = false;
-
     private void Start()
     {
         RockInBucket += InBucket_RockInBucket;
@@ -21,20 +19,8 @@ public class InBucket : MonoBehaviour
         RockInBucket -= InBucket_RockInBucket;
     }
 
-    private static void OnRockInBucket() 
-    {
-        IsRockInBucket = true;
-    }
-
-    public static void OnRockInBucketReset() 
-    {
-        IsRockInBucket = false;
-    }
-
     private void InBucket_RockInBucket(Rock rock)
     {
-        OnRockInBucket();
-
         SoundEffectController.Play("InBucket", transform.position);
         celebrateParticles.Play();
         rock.OnBucketEnter();

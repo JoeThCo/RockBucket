@@ -18,7 +18,7 @@ public class Rock : MonoBehaviour
 
     private bool usedBackboard = false;
     private int bounces = 0;
-    private bool isInBucket = false;
+    public bool isInBucket = false;
 
     public delegate void RockEvent(Rock rock);
     public event RockEvent RockDelete;
@@ -73,6 +73,7 @@ public class Rock : MonoBehaviour
             else if(bounces == 1)
                 ComboController.Add("Dauf Bouncer");
         }
+        ComboController.ComboEnd(rock);
 
         RockDelete -= Rock_RockDelete;
         Destroy(gameObject);

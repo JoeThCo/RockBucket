@@ -16,6 +16,7 @@ public static class ComboController
     public static event HighScore OnHighScore;
 
     private static int highScore = 0;
+    private static bool canAdd = true;
 
     public static void Load()
     {
@@ -23,10 +24,6 @@ public static class ComboController
         OnHighScore += ComboController_OnHighScore;
     }
 
-    private static void ComboController_OnHighScore(int score)
-    {
-        highScore = score;
-    }
 
     private static ComboScriptableObject Get(string name)
     {
@@ -42,6 +39,7 @@ public static class ComboController
 
     public static void Add(string name)
     {
+        if (!canAdd) return;
         ComboScriptableObject obj = Get(name);
 
         if (ComboDictionary.ContainsKey(obj))
@@ -50,27 +48,36 @@ public static class ComboController
             ComboDictionary[obj] = 1;
 
         OnComboUpdated?.Invoke(GetComboString(), GetComboPoints());
-
-
         SoundEffectController.Play("ComboAdded");
     }
 
-    public static void Clear()
+    public static void Reset(Rock rock)
     {
-        int score = GetComboPoints();
-        if (InBucket.IsRockInBucket && score > highScore)
-        {
-            OnHighScore?.Invoke(score);
-        }
-
+        canAdd = true;
         ComboDictionary = new Dictionary<ComboScriptableObject, int>();
         OnComboUpdated.Invoke(string.Empty, 0);
     }
 
-    private static int GetComboPoints() 
+    public static void ComboEnd(Rock rock)
+    {
+        canAdd = false;
+        int score = GetComboPoints();
+
+        if (rock.isInBucket && score > highScore)
+        {
+            OnHighScore?.Invoke(score);
+        }
+    }
+
+    private static void ComboController_OnHighScore(int score)
+    {
+        highScore = score;
+    }
+
+    private static int GetComboPoints()
     {
         int total = 0;
-        foreach (KeyValuePair<ComboScriptableObject, int> obj in ComboDictionary) 
+        foreach (KeyValuePair<ComboScriptableObject, int> obj in ComboDictionary)
         {
             total += obj.Key.Score * obj.Value;
         }

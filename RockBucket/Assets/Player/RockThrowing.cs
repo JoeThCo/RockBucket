@@ -16,6 +16,8 @@ public class RockThrowing : MonoBehaviour
     [SerializeField] private AudioSource rockPowerAudioSource;
     [SerializeField] private PowerBarUI powerBarUI;
 
+    private Rock currentRock;
+
     public float Power { get { return power; } }
     private float power = 0;
     private float throwStartTime = 0;
@@ -59,8 +61,6 @@ public class RockThrowing : MonoBehaviour
         throwStartTime = Time.time;
         power = 0;
         rockPowerAudioSource.Play();
-        ComboController.Clear();
-        InBucket.OnRockInBucketReset();
     }
 
     private void RockThrowing_ThrowMiddle()
@@ -75,6 +75,7 @@ public class RockThrowing : MonoBehaviour
         throwRock();
         power = 0;
         rockPowerAudioSource.Stop();
+        ComboController.Reset(currentRock);
     }
 
     private void throwRock()
@@ -82,6 +83,8 @@ public class RockThrowing : MonoBehaviour
         Rock newRock = Instantiate(rockPrefab, Camera.position, Quaternion.Euler(Camera.forward), null);
         newRock.Throw(Camera.forward, Mathf.Sqrt(rb.velocity.magnitude) + (GameManager.Instance.GameRules.MaxThrowPower * power));
         newRock.RockDelete += OnRockDelete;
+
+        currentRock = newRock;
         CanThrowRock = false;
     }
 
@@ -89,6 +92,8 @@ public class RockThrowing : MonoBehaviour
     {
         rock.RockDelete -= OnRockDelete;
         rock.DeleteRock();
+
+        currentRock = null;
         CanThrowRock = true;
     }
 }
