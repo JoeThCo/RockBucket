@@ -12,9 +12,20 @@ public static class ComboController
     public delegate void ComboUpdated(string combo, int points);
     public static event ComboUpdated OnComboUpdated;
 
+    public delegate void HighScore(int score);
+    public static event HighScore OnHighScore;
+
+    private static int highScore = 0;
+
     public static void Load()
     {
         allCombos = Resources.LoadAll<ComboScriptableObject>("Combo");
+        OnHighScore += ComboController_OnHighScore;
+    }
+
+    private static void ComboController_OnHighScore(int score)
+    {
+        highScore = score;
     }
 
     private static ComboScriptableObject Get(string name)
@@ -39,11 +50,19 @@ public static class ComboController
             ComboDictionary[obj] = 1;
 
         OnComboUpdated?.Invoke(GetComboString(), GetComboPoints());
+
+
         SoundEffectController.Play("ComboAdded");
     }
 
     public static void Clear()
     {
+        int score = GetComboPoints();
+        if (InBucket.IsRockInBucket && score > highScore)
+        {
+            OnHighScore?.Invoke(score);
+        }
+
         ComboDictionary = new Dictionary<ComboScriptableObject, int>();
         OnComboUpdated.Invoke(string.Empty, 0);
     }
@@ -53,8 +72,6 @@ public static class ComboController
         int total = 0;
         foreach (KeyValuePair<ComboScriptableObject, int> obj in ComboDictionary) 
         {
-            Debug.Log(obj.Key.Score);
-            Debug.Log(obj.Value);
             total += obj.Key.Score * obj.Value;
         }
 

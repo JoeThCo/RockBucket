@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61642ffcdb965d34fae93b0ade021456, type: 3}
   m_Name: Main
   m_EditorClassIdentifier: 
+  WindChangeTime: 45
+  MaxWindStrength: 10
+  MaxThrowPower: 75

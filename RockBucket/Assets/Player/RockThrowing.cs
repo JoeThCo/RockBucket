@@ -60,6 +60,7 @@ public class RockThrowing : MonoBehaviour
         power = 0;
         rockPowerAudioSource.Play();
         ComboController.Clear();
+        InBucket.OnRockInBucketReset();
     }
 
     private void RockThrowing_ThrowMiddle()
