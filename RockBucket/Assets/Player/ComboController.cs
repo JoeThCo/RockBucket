@@ -72,7 +72,6 @@ public static class ComboController
         if (rock.isInBucket && score > highScore)
         {
             OnHighScore?.Invoke(score);
-            Debug.Log(highScore);
         }
     }
 
