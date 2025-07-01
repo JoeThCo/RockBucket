@@ -20,10 +20,16 @@ public static class ComboController
 
     public static void Load()
     {
+        canAdd = true;
+
         allCombos = Resources.LoadAll<ComboScriptableObject>("Combo");
         OnHighScore += ComboController_OnHighScore;
     }
 
+    public static void Unload()
+    {
+        OnHighScore -= ComboController_OnHighScore;
+    }
 
     private static ComboScriptableObject Get(string name)
     {
@@ -58,7 +64,7 @@ public static class ComboController
         OnComboUpdated.Invoke(string.Empty, 0);
     }
 
-    public static void ComboEnd(Rock rock)
+    public static void End(Rock rock)
     {
         canAdd = false;
         int score = GetComboPoints();
@@ -66,6 +72,7 @@ public static class ComboController
         if (rock.isInBucket && score > highScore)
         {
             OnHighScore?.Invoke(score);
+            Debug.Log(highScore);
         }
     }
 
@@ -74,6 +81,7 @@ public static class ComboController
         highScore = score;
     }
 
+    #region Helpers
     private static int GetComboPoints()
     {
         int total = 0;
@@ -105,4 +113,5 @@ public static class ComboController
 
         return sb.ToString();
     }
+    #endregion
 }

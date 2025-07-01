@@ -73,7 +73,7 @@ public class Rock : MonoBehaviour
             else if(bounces == 1)
                 ComboController.Add("Dauf Bouncer");
         }
-        ComboController.ComboEnd(rock);
+        ComboController.End(rock);
 
         RockDelete -= Rock_RockDelete;
         Destroy(gameObject);

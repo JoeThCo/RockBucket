@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     {
         GamePaused -= GameManager_GamePaused;
         GameResume -= GameManager_GameResume;
+
+        ComboController.Unload();
     }
 
     private void GameManager_GameResume()
