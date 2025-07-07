@@ -314,7 +314,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211630485}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f643c83d91eeb349852385802b2d66a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -548,7 +548,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390439676}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f643c83d91eeb349852385802b2d66a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -776,7 +776,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538978741}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f643c83d91eeb349852385802b2d66a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6082,7 +6082,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175778526}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f643c83d91eeb349852385802b2d66a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6171,7 +6171,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208321532}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f643c83d91eeb349852385802b2d66a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
